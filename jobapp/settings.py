@@ -30,9 +30,9 @@ DEBUG = os.getenv("IS_DEVELOPMENT", True)
 # DEBUG = os.getenv("IS_DEVELOPMENT", True) == 'True' # This is for production when the returned environment variable is in the string format.
 
 
-ALLOWED_HOSTS = [os.getenv("APP_HOST"),
-                 "127.0.0.1"]
-
+# ALLOWED_HOSTS = [os.getenv("APP_HOST"),
+#                  "localhost:8000"]
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -92,6 +92,18 @@ DATABASES = {
     }
 }
 
+# When you add new database then add this and fill details.
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': os.get("DATABASE_NAME",'<DATABASE-NAME>'),
+#         'USER': os.get("DATABASE_USER",'<USER-NAME>'),
+#         'PASSWORD': os.get("DATABASE_PASSWORD",'<PASSWORD>'),
+#         'HOST': os.get("DATABASE_HOST",'<DATABASE-HOST>'),
+#         'PORT': os.get("DATABASE_PORT",'<DATABASE-PORT>'),
+#     }
+# }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -141,10 +153,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
-#these are for the AWS configuration for media files.
+# #these are for the AWS configuration for media files.
 DEFAULT_FILE_STORAGE = "storages.backends.s3.S3Storage"
 AWS_S3_ACCESS_KEY_ID = os.getenv('AWS_S3_ACCESS_KEY_ID','')
 AWS_S3_SECRET_ACCESS_KEY = os.getenv('AWS_S3_SECRET_ACCESS_KEY','')
 AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME','')
 AWS_QUERYSTRING_AUTH = False #by this we see a much cleaner URL of the uploaded file.
-STATICFILES_STORAGE = "storages.backends.s3.S3Storage" # to serve static files from the S3
+# STATICFILES_STORAGE = "storages.backends.s3.S3Storage" # to serve static files from the S3
